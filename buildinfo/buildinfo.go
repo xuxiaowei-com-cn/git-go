@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 )
 
 var commitAuthor string    // Name <email> 格式的提交作者
@@ -81,6 +82,16 @@ func Main() {
 				Usage:   "ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(CommitTimestamp())
+					return nil
+				},
+			},
+			{
+				Name:  "now",
+				Usage: "ISO 8601 格式的当前时间戳，如：2023-10-02T02:35:20+08:00",
+				Action: func(cCtx *cli.Context) error {
+					now := time.Now()
+					str := now.Format("2006-01-02T15:04:05+08:00")
+					fmt.Println(str)
 					return nil
 				},
 			},
