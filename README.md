@@ -6,6 +6,7 @@
 
 ```shell
 go get -u github.com/urfave/cli/v2
+go get -u gopkg.in/yaml.v3
 ```
 
 ### mod
