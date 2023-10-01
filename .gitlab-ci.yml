@@ -8,6 +8,8 @@ build:golang:1.21:
   script:
     - go version
     - go env -w GOPROXY=https://goproxy.cn,direct
+    - go mod download
+    - go test ./... -v
     - GOOS=windows GOARCH=amd64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-windows-amd64.exe .
     - GOOS=windows GOARCH=arm64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-windows-arm64.exe .
     - GOOS=linux   GOARCH=amd64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-linux-amd64 .
@@ -29,6 +31,8 @@ build:golang:1.21-alpine3.18:
   script:
     - go version
     - go env -w GOPROXY=https://goproxy.cn,direct
+    - go mod download
+    - go test ./... -v
     - GOOS=linux GOARCH=amd64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-linux-alpine-amd64 .
     - GOOS=linux GOARCH=arm64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-linux-alpine-arm64 .
     - ./git-go-linux-alpine-amd64
