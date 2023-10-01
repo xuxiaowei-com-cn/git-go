@@ -41,6 +41,10 @@ COMMANDS:
    commitShortSha, css   项目为其构建的提交修订的前八个字符
    commitTag, ct         提交标签名称
    commitTimestamp, cts  ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00
+   now                   ISO 8601 格式的当前时间戳，如：2023-10-02T02:35:20+08:00
+   goVersion, gv         go version 命令返回值，如：go version go1.21.1 windows/amd64
+   goShortVersion, gsv   go version 命令返回值截取版本号，如：go1.21.1
+   goPlatform, gp        go version 命令返回值截取平台信息，如：windows/amd64
    help, h               Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
