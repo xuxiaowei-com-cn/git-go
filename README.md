@@ -29,13 +29,19 @@ go run main.go help
 ```shell
 $ go run main.go help
 NAME:
-   boom - make an explosive entrance
+   git-go - 基于 Go 语言的 Git 命令行工具
 
 USAGE:
-   boom [global options] command [command options] [arguments...]
+   git-go [global options] command [command options] [arguments...]
 
 COMMANDS:
-   help, h  Shows a list of commands or help for one command
+   commitAuthor, ca      Name <email> 格式的提交作者
+   commitBranch, cb      提交分支名称
+   commitSha, cs         项目为其构建的提交修订
+   commitShortSha, css   项目为其构建的提交修订的前八个字符
+   commitTag, ct         提交标签名称
+   commitTimestamp, cts  ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00
+   help, h               Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
    --help, -h  show help
@@ -44,7 +50,7 @@ GLOBAL OPTIONS:
 ### test
 
 ```shell
-go test -v
+go test ./... -v
 ```
 
 ### build
