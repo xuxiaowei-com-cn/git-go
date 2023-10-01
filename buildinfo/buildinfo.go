@@ -16,6 +16,9 @@ var commitSha string       // 项目为其构建的提交修订
 var commitShortSha string  // 项目为其构建的提交修订的前八个字符
 var commitTag string       // 提交标签名称
 var commitTimestamp string // ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00
+var goVersion string       // go version 命令返回值，如：go version go1.21.1 windows/amd64
+var goShortVersion string  // go version 命令返回值截取版本号，如：go1.21.1
+var goPlatform string      // go version 命令返回值截取平台信息，如：windows/amd64
 
 func init() {
 	commitAuthor = CommitAuthor()
@@ -24,6 +27,9 @@ func init() {
 	commitShortSha = CommitShortSha()
 	commitTag = CommitTag()
 	commitTimestamp = CommitTimestamp()
+	goVersion = GoVersion()
+	goShortVersion = GoShortVersion()
+	goPlatform = GoPlatform()
 }
 
 func Main() {
@@ -95,6 +101,33 @@ func Main() {
 					return nil
 				},
 			},
+			{
+				Name:    "goVersion",
+				Aliases: []string{"gv"},
+				Usage:   "go version 命令返回值，如：go version go1.21.1 windows/amd64",
+				Action: func(cCtx *cli.Context) error {
+					fmt.Println(GoVersion())
+					return nil
+				},
+			},
+			{
+				Name:    "goShortVersion",
+				Aliases: []string{"gsv"},
+				Usage:   "go version 命令返回值截取版本号，如：go1.21.1",
+				Action: func(cCtx *cli.Context) error {
+					fmt.Println(GoVersion())
+					return nil
+				},
+			},
+			{
+				Name:    "goPlatform",
+				Aliases: []string{"gp"},
+				Usage:   "go version 命令返回值截取平台信息，如：windows/amd64",
+				Action: func(cCtx *cli.Context) error {
+					fmt.Println(GoVersion())
+					return nil
+				},
+			},
 		},
 	}
 
@@ -161,4 +194,36 @@ func CommitTimestamp() string {
 	}
 	str := strings.TrimSpace(string(output))
 	return str
+}
+
+func GoVersion() string {
+	cmd := exec.Command("go", "version")
+	output, err := cmd.Output()
+	if err != nil {
+		return ""
+	}
+	str := strings.TrimSpace(string(output))
+	return str
+}
+
+func GoShortVersion() string {
+	cmd := exec.Command("go", "version")
+	output, err := cmd.Output()
+	if err != nil {
+		return ""
+	}
+	str := strings.TrimSpace(string(output))
+	parts := strings.Split(str, " ")
+	return parts[2]
+}
+
+func GoPlatform() string {
+	cmd := exec.Command("go", "version")
+	output, err := cmd.Output()
+	if err != nil {
+		return ""
+	}
+	str := strings.TrimSpace(string(output))
+	parts := strings.Split(str, " ")
+	return parts[3]
 }

@@ -52,3 +52,27 @@ func Test_CommitTimestamp(t *testing.T) {
 func Test_commitTimestamp(t *testing.T) {
 	fmt.Println(commitTimestamp)
 }
+
+func Test_GoVersion(t *testing.T) {
+	fmt.Println(GoVersion())
+}
+
+func Test_goVersion(t *testing.T) {
+	fmt.Println(goVersion)
+}
+
+func Test_GoShortVersion(t *testing.T) {
+	fmt.Println(GoShortVersion())
+}
+
+func Test_goShortVersion(t *testing.T) {
+	fmt.Println(goShortVersion)
+}
+
+func Test_GoPlatform(t *testing.T) {
+	fmt.Println(GoPlatform())
+}
+
+func Test_goPlatform(t *testing.T) {
+	fmt.Println(goPlatform)
+}
