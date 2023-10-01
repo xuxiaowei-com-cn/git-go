@@ -115,7 +115,7 @@ func Main() {
 				Aliases: []string{"gsv"},
 				Usage:   "go version 命令返回值截取版本号，如：go1.21.1",
 				Action: func(cCtx *cli.Context) error {
-					fmt.Println(GoVersion())
+					fmt.Println(GoShortVersion())
 					return nil
 				},
 			},
@@ -124,7 +124,7 @@ func Main() {
 				Aliases: []string{"gp"},
 				Usage:   "go version 命令返回值截取平台信息，如：windows/amd64",
 				Action: func(cCtx *cli.Context) error {
-					fmt.Println(GoVersion())
+					fmt.Println(GoPlatform())
 					return nil
 				},
 			},
