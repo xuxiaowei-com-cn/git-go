@@ -3,10 +3,10 @@ package buildinfo
 type Version struct {
 	Name         string       `yaml:"name" json:"name"`                 // 名称
 	Description  string       `yaml:"description" json:"description"`   // 描述
-	BuildVersion BuildVersion `yaml:"buildVersion" json:"buildVersion"` // 构建版本
-	Organization Organization `yaml:"organization" json:"organization"` // 组织
 	URL          string       `yaml:"url" json:"url"`                   // 仓库 URL
 	BugReportUrl string       `yaml:"bugReportUrl" json:"bugReportUrl"` // 错误报告网址
+	BuildVersion BuildVersion `yaml:"buildVersion" json:"buildVersion"` // 构建版本
+	Organization Organization `yaml:"organization" json:"organization"` // 组织
 }
 
 type BuildVersion struct {
