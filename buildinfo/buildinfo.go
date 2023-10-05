@@ -38,8 +38,8 @@ func Main() {
 		Usage: "基于 Go 语言的 Git 命令行工具",
 		Commands: []*cli.Command{
 			{
-				Name:    "commitAuthor",
-				Aliases: []string{"ca"},
+				Name:    "commit-author",
+				Aliases: []string{"commitAuthor", "ca"},
 				Usage:   "Name <email> 格式的提交作者",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(CommitAuthor())
@@ -47,8 +47,8 @@ func Main() {
 				},
 			},
 			{
-				Name:    "commitBranch",
-				Aliases: []string{"cb"},
+				Name:    "commit-branch",
+				Aliases: []string{"commitBranch", "cb"},
 				Usage:   "提交分支名称",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(CommitBranch())
@@ -56,8 +56,8 @@ func Main() {
 				},
 			},
 			{
-				Name:    "commitSha",
-				Aliases: []string{"cs"},
+				Name:    "commit-sha",
+				Aliases: []string{"commitSha", "cs"},
 				Usage:   "项目为其构建的提交修订",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(CommitSha())
@@ -65,8 +65,8 @@ func Main() {
 				},
 			},
 			{
-				Name:    "commitShortSha",
-				Aliases: []string{"css"},
+				Name:    "commit-short-sha",
+				Aliases: []string{"commitShortSha", "css"},
 				Usage:   "项目为其构建的提交修订的前八个字符",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(CommitShortSha())
@@ -74,8 +74,8 @@ func Main() {
 				},
 			},
 			{
-				Name:    "commitTag",
-				Aliases: []string{"ct"},
+				Name:    "commit-tag",
+				Aliases: []string{"commitTag", "ct"},
 				Usage:   "提交标签名称",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(CommitTag())
@@ -83,8 +83,8 @@ func Main() {
 				},
 			},
 			{
-				Name:    "commitTimestamp",
-				Aliases: []string{"cts"},
+				Name:    "commit-timestamp",
+				Aliases: []string{"commitTimestamp", "cts"},
 				Usage:   "ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(CommitTimestamp())
@@ -102,8 +102,8 @@ func Main() {
 				},
 			},
 			{
-				Name:    "goVersion",
-				Aliases: []string{"gv"},
+				Name:    "go-version",
+				Aliases: []string{"goVersion", "gv"},
 				Usage:   "go version 命令返回值，如：go version go1.21.1 windows/amd64",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(GoVersion())
@@ -111,8 +111,8 @@ func Main() {
 				},
 			},
 			{
-				Name:    "goShortVersion",
-				Aliases: []string{"gsv"},
+				Name:    "go-short-version",
+				Aliases: []string{"goShortVersion", "gsv"},
 				Usage:   "go version 命令返回值截取版本号，如：go1.21.1",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(GoShortVersion())
@@ -120,8 +120,8 @@ func Main() {
 				},
 			},
 			{
-				Name:    "goPlatform",
-				Aliases: []string{"gp"},
+				Name:    "go-platform",
+				Aliases: []string{"goPlatform", "gp"},
 				Usage:   "go version 命令返回值截取平台信息，如：windows/amd64",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(GoPlatform())
