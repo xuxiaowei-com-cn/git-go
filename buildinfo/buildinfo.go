@@ -192,7 +192,7 @@ func CommitTimestamp() string {
 	if err != nil {
 		return ""
 	}
-	str := strings.TrimSpace(string(output))
+	str := strings.ReplaceAll(strings.TrimSpace(string(output)), "\"", "")
 	return str
 }
 
