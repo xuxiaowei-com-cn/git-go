@@ -19,6 +19,10 @@ var commitTimestamp string // ISO 8601 格式的提交时间戳，如：2023-10-
 var goVersion string       // go version 命令返回值，如：go version go1.21.1 windows/amd64
 var goShortVersion string  // go version 命令返回值截取版本号，如：go1.21.1
 var goPlatform string      // go version 命令返回值截取平台信息，如：windows/amd64
+var Author = "徐晓伟"
+var Email = "xuxiaowei@xuxiaowei.com.cn"
+var appVersion = "dev"
+var Copyright = "徐晓伟工作室 <xuxiaowei@xuxiaowei.com.cn>"
 
 func init() {
 	commitAuthor = CommitAuthor()
@@ -34,8 +38,11 @@ func init() {
 
 func Main() {
 	app := &cli.App{
-		Name:  "git-go",
-		Usage: "基于 Go 语言的 Git 命令行工具",
+		Name:      "git-go",
+		Version:   appVersion,
+		Authors:   []*cli.Author{{Name: Author, Email: Email}},
+		Usage:     "基于 Go 语言的 Git 命令行工具",
+		Copyright: Copyright,
 		Commands: []*cli.Command{
 			{
 				Name:    "commit-author",

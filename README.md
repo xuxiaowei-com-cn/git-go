@@ -37,21 +37,31 @@ NAME:
 USAGE:
    git-go [global options] command [command options] [arguments...]
 
+VERSION:
+   dev
+
+AUTHOR:
+   徐晓伟 <xuxiaowei@xuxiaowei.com.cn>
+
 COMMANDS:
-   commitAuthor, ca      Name <email> 格式的提交作者
-   commitBranch, cb      提交分支名称
-   commitSha, cs         项目为其构建的提交修订
-   commitShortSha, css   项目为其构建的提交修订的前八个字符
-   commitTag, ct         提交标签名称
-   commitTimestamp, cts  ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00
-   now                   ISO 8601 格式的当前时间戳，如：2023-10-02T02:35:20+08:00
-   goVersion, gv         go version 命令返回值，如：go version go1.21.1 windows/amd64
-   goShortVersion, gsv   go version 命令返回值截取版本号，如：go1.21.1
-   goPlatform, gp        go version 命令返回值截取平台信息，如：windows/amd64
-   help, h               Shows a list of commands or help for one command
+   commit-author, commitAuthor, ca         Name <email> 格式的提交作者
+   commit-branch, commitBranch, cb         提交分支名称
+   commit-sha, commitSha, cs               项目为其构建的提交修订
+   commit-short-sha, commitShortSha, css   项目为其构建的提交修订的前八个字符
+   commit-tag, commitTag, ct               提交标签名称
+   commit-timestamp, commitTimestamp, cts  ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00
+   now                                     ISO 8601 格式的当前时间戳，如：2023-10-02T02:35:20+08:00
+   go-version, goVersion, gv               go version 命令返回值，如：go version go1.21.1 windows/amd64
+   go-short-version, goShortVersion, gsv   go version 命令返回值截取版本号，如：go1.21.1
+   go-platform, goPlatform, gp             go version 命令返回值截取平台信息，如：windows/amd64
+   help, h                                 Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --help, -h  show help
+   --help, -h     show help
+   --version, -v  print the version
+
+COPYRIGHT:
+   徐晓伟工作室 <xuxiaowei@xuxiaowei.com.cn>
 ```
 
 ### test
