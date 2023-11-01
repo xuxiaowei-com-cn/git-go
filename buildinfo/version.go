@@ -24,6 +24,7 @@ type BuildVersion struct {
 	Minor              string `yaml:"minor" json:"minor"`                           // 次版本号
 	Revision           string `yaml:"revision" json:"revision"`                     // 修订版本号
 	Platform           string `yaml:"platform" json:"platform"`                     // 平台
+	InstanceUrl        string `yaml:"instanceUrl" json:"instanceUrl"`               // 实例地址
 	CiPipelineId       string `yaml:"ciPipelineId" json:"ciPipelineId"`             // CI 流水线 ID
 	CiJobId            string `yaml:"ciJobId" json:"ciJobId"`                       // CI 任务 ID
 }

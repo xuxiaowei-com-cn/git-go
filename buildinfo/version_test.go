@@ -24,6 +24,7 @@ func TestInfo(t *testing.T) {
 			Minor:             "2",
 			Revision:          "4",
 			Platform:          "your_platform",
+			InstanceUrl:       "https://example.com",
 			CiPipelineId:      "your_ci_pipeline_id",
 			CiJobId:           "your_ci_job_id",
 		},
