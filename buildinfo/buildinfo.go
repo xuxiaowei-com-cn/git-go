@@ -137,7 +137,7 @@ func Main() {
 			},
 			{
 				Name:    "git-tree-state",
-				Aliases: []string{"gts"},
+				Aliases: []string{"gitTreeState", "gts"},
 				Usage:   "git 树状态：clean、dirty",
 				Action: func(cCtx *cli.Context) error {
 					fmt.Println(GitTreeState())
