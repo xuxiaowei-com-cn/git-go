@@ -135,6 +135,15 @@ func Main() {
 					return nil
 				},
 			},
+			{
+				Name:    "git-tree-state",
+				Aliases: []string{"gts"},
+				Usage:   "git 树状态：clean、dirty",
+				Action: func(cCtx *cli.Context) error {
+					fmt.Println(GitTreeState())
+					return nil
+				},
+			},
 		},
 	}
 
@@ -233,4 +242,17 @@ func GoPlatform() string {
 	str := strings.TrimSpace(string(output))
 	parts := strings.Split(str, " ")
 	return parts[3]
+}
+
+func GitTreeState() string {
+	cmd := exec.Command("git", "status", "--porcelain")
+	output, err := cmd.Output()
+	if err != nil {
+		return ""
+	}
+	str := strings.TrimSpace(string(output))
+	if str == "" {
+		return "clean"
+	}
+	return "dirty"
 }
