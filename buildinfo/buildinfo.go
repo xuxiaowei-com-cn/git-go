@@ -29,7 +29,7 @@ func init() {
 	commitBranch = CommitBranch()
 	commitSha = CommitSha()
 	commitShortSha = CommitShortSha()
-	commitTag = CommitTag()
+	commitTag = CommitTag("")
 	commitTimestamp = CommitTimestamp()
 	goVersion = GoVersion()
 	goShortVersion = GoShortVersion()
@@ -84,8 +84,10 @@ func Main() {
 				Name:    "commit-tag",
 				Aliases: []string{"commitTag", "ct"},
 				Usage:   "提交标签名称",
+				Flags:   []cli.Flag{DefaultTagFlag()},
 				Action: func(cCtx *cli.Context) error {
-					fmt.Println(CommitTag())
+					var defaultTag = cCtx.String(DefaultTag)
+					fmt.Println(CommitTag(defaultTag))
 					return nil
 				},
 			},
@@ -192,11 +194,11 @@ func CommitShortSha() string {
 	return str
 }
 
-func CommitTag() string {
+func CommitTag(defaultTag string) string {
 	cmd := exec.Command("git", "describe", "--tags", "--exact-match", "HEAD")
 	output, err := cmd.Output()
 	if err != nil {
-		return ""
+		return defaultTag
 	}
 	str := strings.TrimSpace(string(output))
 	return str
