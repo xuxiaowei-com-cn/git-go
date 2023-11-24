@@ -29,7 +29,7 @@ func init() {
 	commitBranch = CommitBranch()
 	commitSha = CommitSha()
 	commitShortSha = CommitShortSha()
-	commitTag = CommitTag("")
+	commitTag = GitDescribeTags(false, "", true)
 	commitTimestamp = CommitTimestamp()
 	goVersion = GoVersion()
 	goShortVersion = GoShortVersion()
@@ -84,10 +84,12 @@ func Main() {
 				Name:    "commit-tag",
 				Aliases: []string{"commitTag", "ct"},
 				Usage:   "提交标签名称",
-				Flags:   []cli.Flag{DefaultTagFlag()},
+				Flags:   []cli.Flag{ExactMatchFlag(), AbbrevFlag(), HeadFlag()},
 				Action: func(cCtx *cli.Context) error {
-					var defaultTag = cCtx.String(DefaultTag)
-					fmt.Println(CommitTag(defaultTag))
+					var exactMatch = cCtx.Bool(ExactMatch)
+					var abbrev = cCtx.String(Abbrev)
+					var head = cCtx.Bool(Head)
+					fmt.Println(GitDescribeTags(exactMatch, abbrev, head))
 					return nil
 				},
 			},
@@ -194,11 +196,24 @@ func CommitShortSha() string {
 	return str
 }
 
-func CommitTag(defaultTag string) string {
-	cmd := exec.Command("git", "describe", "--tags", "--exact-match", "HEAD")
+func GitDescribeTags(exactMatch bool, abbrev string, head bool) string {
+	cmd := exec.Command("git", "describe", "--tags")
+
+	if exactMatch {
+		cmd.Args = append(cmd.Args, "--exact-match")
+	}
+
+	if abbrev != "" {
+		cmd.Args = append(cmd.Args, "--abbrev="+abbrev)
+	}
+
+	if head {
+		cmd.Args = append(cmd.Args, "HEAD")
+	}
+
 	output, err := cmd.Output()
 	if err != nil {
-		return defaultTag
+		return ""
 	}
 	str := strings.TrimSpace(string(output))
 	return str

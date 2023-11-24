@@ -1,5 +1,7 @@
 package buildinfo
 
 const (
-	DefaultTag = "default-tag"
+	ExactMatch = "exact-match"
+	Abbrev     = "abbrev"
+	Head       = "head"
 )

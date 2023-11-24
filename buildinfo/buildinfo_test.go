@@ -38,7 +38,7 @@ func Test_commitShortSha(t *testing.T) {
 }
 
 func Test_CommitTag(t *testing.T) {
-	fmt.Println(CommitTag(""))
+	fmt.Println(GitDescribeTags(false, "", true))
 }
 
 func Test_commitTag(t *testing.T) {
