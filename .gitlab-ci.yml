@@ -5,22 +5,29 @@ stages:
 build:golang:1.21:
   stage: build
   image: golang:1.21
+  variables:
+    CGO_ENABLED: 0
   script:
+    - echo $CI_PIPELINE_ID
+    - echo $CI_JOB_ID
     - go version
     - go env -w GOPROXY=https://goproxy.cn,direct
     #- go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
     - go mod download
     - go test ./... -v
-    - GOOS=windows GOARCH=amd64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-windows-amd64.exe .
-    - GOOS=windows GOARCH=arm64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-windows-arm64.exe .
-    - GOOS=linux   GOARCH=amd64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-linux-amd64 .
-    - GOOS=linux   GOARCH=arm64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-linux-arm64 .
-    - GOOS=darwin  GOARCH=amd64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-darwin-amd64 .
-    - GOOS=darwin  GOARCH=arm64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-darwin-arm64 .
+    - go run main.go
+    - go build -o buildinfo/tmp main.go
+    - GOOS=windows GOARCH=amd64 go build -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$CI_COMMIT_BRANCH -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=windows/amd64 -X main.InstanceUrl=$CI_SERVER_URL -X main.CiPipelineId=$CI_PIPELINE_ID -X main.CiJobId=$CI_JOB_ID" -trimpath -o git-go-windows-amd64.exe .
+    - GOOS=windows GOARCH=arm64 go build -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$CI_COMMIT_BRANCH -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=windows/arm64 -X main.InstanceUrl=$CI_SERVER_URL -X main.CiPipelineId=$CI_PIPELINE_ID -X main.CiJobId=$CI_JOB_ID" -trimpath -o git-go-windows-arm64.exe .
+    - GOOS=linux   GOARCH=amd64 go build -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$CI_COMMIT_BRANCH -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=linux/amd64   -X main.InstanceUrl=$CI_SERVER_URL -X main.CiPipelineId=$CI_PIPELINE_ID -X main.CiJobId=$CI_JOB_ID" -trimpath -o git-go-linux-amd64 .
+    - GOOS=linux   GOARCH=arm64 go build -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$CI_COMMIT_BRANCH -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=linux/arm64   -X main.InstanceUrl=$CI_SERVER_URL -X main.CiPipelineId=$CI_PIPELINE_ID -X main.CiJobId=$CI_JOB_ID" -trimpath -o git-go-linux-arm64 .
+    - GOOS=darwin  GOARCH=amd64 go build -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$CI_COMMIT_BRANCH -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=darwin/amd64  -X main.InstanceUrl=$CI_SERVER_URL -X main.CiPipelineId=$CI_PIPELINE_ID -X main.CiJobId=$CI_JOB_ID" -trimpath -o git-go-darwin-amd64 .
+    - GOOS=darwin  GOARCH=arm64 go build -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$CI_COMMIT_BRANCH -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=darwin/arm64  -X main.InstanceUrl=$CI_SERVER_URL -X main.CiPipelineId=$CI_PIPELINE_ID -X main.CiJobId=$CI_JOB_ID" -trimpath -o git-go-darwin-arm64 .
+    - ./git-go-linux-amd64 --version
     - ./git-go-linux-amd64
   artifacts:
     name: "${CI_JOB_NAME}"
-    expire_in: 1 week
+    expire_in: 3 day
     paths:
       - git-go-windows-*
       - git-go-linux-*
@@ -29,18 +36,25 @@ build:golang:1.21:
 build:golang:1.21-alpine3.18:
   stage: build
   image: golang:1.21-alpine3.18
+  variables:
+    CGO_ENABLED: 0
   script:
+    - echo $CI_PIPELINE_ID
+    - echo $CI_JOB_ID
     - go version
     - go env -w GOPROXY=https://goproxy.cn,direct
     #- go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
     - go mod download
     - go test ./... -v
-    - GOOS=linux GOARCH=amd64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-linux-alpine-amd64 .
-    - GOOS=linux GOARCH=arm64 go build -v -ldflags "-s -w -buildid=" -trimpath -o git-go-linux-alpine-arm64 .
+    - go run main.go
+    - go build -o buildinfo/tmp main.go
+    - GOOS=linux GOARCH=amd64 go build -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$CI_COMMIT_BRANCH -X main.GitCommitSha=$CI_COMMIT_SHA -X main.GitCommitShortSha=$CI_COMMIT_SHORT_SHA -X main.GitCommitTag=$CI_COMMIT_TAG -X main.GitCommitTimestamp=$CI_COMMIT_TIMESTAMP -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=linux/alpine/amd64 -X main.CiPipelineId=$CI_PIPELINE_ID -X main.CiJobId=$CI_JOB_ID" -trimpath -o git-go-linux-alpine-amd64 .
+    - GOOS=linux GOARCH=arm64 go build -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$CI_COMMIT_BRANCH -X main.GitCommitSha=$CI_COMMIT_SHA -X main.GitCommitShortSha=$CI_COMMIT_SHORT_SHA -X main.GitCommitTag=$CI_COMMIT_TAG -X main.GitCommitTimestamp=$CI_COMMIT_TIMESTAMP -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=linux/alpine/arm64 -X main.CiPipelineId=$CI_PIPELINE_ID -X main.CiJobId=$CI_JOB_ID" -trimpath -o git-go-linux-alpine-arm64 .
+    - ./git-go-linux-alpine-amd64 --version
     - ./git-go-linux-alpine-amd64
   artifacts:
     name: "${CI_JOB_NAME}"
-    expire_in: 1 week
+    expire_in: 3 day
     paths:
       - git-go-linux-*
 
