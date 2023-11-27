@@ -135,7 +135,7 @@ func Command() []*cli.Command {
 		},
 		{
 			Name:    "git-short-version",
-			Aliases: []string{"goShortVersion", "gitsv"},
+			Aliases: []string{"gitShortVersion", "gitsv"},
 			Usage:   "git version 命令返回值截取版本号，如：go1.21.1、2.42.0.windows.2",
 			Action: func(cCtx *cli.Context) error {
 				fmt.Println(GitShortVersion())
