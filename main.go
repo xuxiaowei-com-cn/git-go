@@ -56,7 +56,8 @@ func main() {
 		Authors:   []*cli.Author{{Name: Author, Email: Email}},
 		Usage:     Description,
 		Copyright: Copyright,
-		Commands:  buildinfo.Command(),
+		// gitee.Command()
+		Commands: append(buildinfo.Command()),
 	}
 
 	if err := app.Run(os.Args); err != nil {
