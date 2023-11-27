@@ -108,7 +108,7 @@ func Command() []*cli.Command {
 		},
 		{
 			Name:    "go-version",
-			Aliases: []string{"goVersion", "gv"},
+			Aliases: []string{"goVersion", "gov"},
 			Usage:   "go version 命令返回值，如：go version go1.21.1 windows/amd64",
 			Action: func(cCtx *cli.Context) error {
 				fmt.Println(GoVersion())
@@ -117,10 +117,28 @@ func Command() []*cli.Command {
 		},
 		{
 			Name:    "go-short-version",
-			Aliases: []string{"goShortVersion", "gsv"},
+			Aliases: []string{"goShortVersion", "gosv"},
 			Usage:   "go version 命令返回值截取版本号，如：go1.21.1",
 			Action: func(cCtx *cli.Context) error {
 				fmt.Println(GoShortVersion())
+				return nil
+			},
+		},
+		{
+			Name:    "git-version",
+			Aliases: []string{"gitVersion", "gitv"},
+			Usage:   "git version 命令返回值，如：git version 2.39.2、git version 2.42.0.windows.2",
+			Action: func(cCtx *cli.Context) error {
+				fmt.Println(GitVersion())
+				return nil
+			},
+		},
+		{
+			Name:    "git-short-version",
+			Aliases: []string{"goShortVersion", "gitsv"},
+			Usage:   "git version 命令返回值截取版本号，如：go1.21.1、2.42.0.windows.2",
+			Action: func(cCtx *cli.Context) error {
+				fmt.Println(GitShortVersion())
 				return nil
 			},
 		},
@@ -245,6 +263,27 @@ func GoVersion() string {
 
 func GoShortVersion() string {
 	cmd := exec.Command("go", "version")
+	output, err := cmd.Output()
+	if err != nil {
+		return ""
+	}
+	str := strings.TrimSpace(string(output))
+	parts := strings.Split(str, " ")
+	return parts[2]
+}
+
+func GitVersion() string {
+	cmd := exec.Command("git", "version")
+	output, err := cmd.Output()
+	if err != nil {
+		return ""
+	}
+	str := strings.TrimSpace(string(output))
+	return str
+}
+
+func GitShortVersion() string {
+	cmd := exec.Command("git", "version")
 	output, err := cmd.Output()
 	if err != nil {
 		return ""
