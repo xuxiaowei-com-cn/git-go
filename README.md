@@ -156,20 +156,18 @@ AUTHOR:
    徐晓伟 <xuxiaowei@xuxiaowei.com.cn>
 
 COMMANDS:
-   commit-author, commitAuthor, ca           Name <email> 格式的提交作者
-   commit-branch, commitBranch, cb           提交分支名称
-   commit-sha, commitSha, cs                 项目为其构建的提交修订
-   commit-short-sha, commitShortSha, css     项目为其构建的提交修订的前八个字符
-   commit-tag, commitTag, ct                 提交标签名称
-   commit-timestamp, commitTimestamp, cts    ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00
-   now                                       ISO 8601 格式的当前时间戳，如：2023-10-02T02:35:20+08:00
-   go-version, goVersion, gov                go version 命令返回值，如：go version go1.21.1 windows/amd64
-   go-short-version, goShortVersion, gosv    go version 命令返回值截取版本号，如：go1.21.1
-   git-version, gitVersion, gitv             git version 命令返回值，如：git version 2.39.2、git version 2.42.0.windows.2
-   git-short-version, goShortVersion, gitsv  git version 命令返回值截取版本号，如：go1.21.1、2.42.0.windows.2
-   go-platform, goPlatform, gp               go version 命令返回值截取平台信息，如：windows/amd64
-   git-tree-state, gitTreeState, gts         git 树状态：clean、dirty
-   help, h                                   Shows a list of commands or help for one command
+   commit-author, commitAuthor, ca         Name <email> 格式的提交作者
+   commit-branch, commitBranch, cb         提交分支名称
+   commit-sha, commitSha, cs               项目为其构建的提交修订
+   commit-short-sha, commitShortSha, css   项目为其构建的提交修订的前八个字符
+   commit-tag, commitTag, ct               提交标签名称
+   commit-timestamp, commitTimestamp, cts  ISO 8601 格式的提交时间戳，如：2023-10-02T00:29:17+08:00
+   now                                     ISO 8601 格式的当前时间戳，如：2023-10-02T02:35:20+08:00
+   go-version, goVersion, gv               go version 命令返回值，如：go version go1.21.1 windows/amd64
+   go-short-version, goShortVersion, gsv   go version 命令返回值截取版本号，如：go1.21.1
+   go-platform, goPlatform, gp             go version 命令返回值截取平台信息，如：windows/amd64
+   git-tree-state, gitTreeState, gts       git 树状态：clean、dirty
+   help, h                                 Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
    --help, -h     show help
@@ -205,34 +203,34 @@ go build
     - amd64
         ```shell
         go build -o buildinfo/tmp.exe main.go
-        GOOS=windows GOARCH=amd64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp.exe now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp.exe commitBranch) -X main.GitCommitSha=$(buildinfo/tmp.exe commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp.exe commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp.exe commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp.exe commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp.exe git-tree-state) -X main.GitVersion=$(buildinfo/tmp.exe gitVersion) -X main.GoVersion=$(buildinfo/tmp.exe goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=windows/amd64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-windows-amd64.exe .
+        GOOS=windows GOARCH=amd64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp.exe now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp.exe commitBranch) -X main.GitCommitSha=$(buildinfo/tmp.exe commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp.exe commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp.exe commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp.exe commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp.exe git-tree-state) -X main.GitVersion=$(buildinfo/tmp.exe commitTag) -X main.GoVersion=$(buildinfo/tmp.exe goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=windows/amd64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-windows-amd64.exe .
         ```
     - arm64
         ```shell
         go build -o buildinfo/tmp.exe main.go
-        GOOS=windows GOARCH=arm64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp.exe now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp.exe commitBranch) -X main.GitCommitSha=$(buildinfo/tmp.exe commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp.exe commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp.exe commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp.exe commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp.exe git-tree-state) -X main.GitVersion=$(buildinfo/tmp.exe gitVersion) -X main.GoVersion=$(buildinfo/tmp.exe goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=windows/arm64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-windows-arm64.exe .
+        GOOS=windows GOARCH=arm64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp.exe now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp.exe commitBranch) -X main.GitCommitSha=$(buildinfo/tmp.exe commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp.exe commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp.exe commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp.exe commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp.exe git-tree-state) -X main.GitVersion=$(buildinfo/tmp.exe commitTag) -X main.GoVersion=$(buildinfo/tmp.exe goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=windows/arm64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-windows-arm64.exe .
         ```
 
 - Linux
     - amd64
         ```shell
         go build -o buildinfo/tmp main.go
-        GOOS=linux GOARCH=amd64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp commitBranch) -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp gitVersion) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=linux/amd64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-linux-amd64 .
+        GOOS=linux GOARCH=amd64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp commitBranch) -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=linux/amd64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-linux-amd64 .
         ```
     - arm64
         ```shell
         go build -o buildinfo/tmp main.go
-        GOOS=linux GOARCH=arm64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp commitBranch) -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp gitVersion) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=linux/arm64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-linux-arm64 .
+        GOOS=linux GOARCH=arm64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp commitBranch) -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=linux/arm64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-linux-arm64 .
         ```
 
 - Darwin
     - amd64
         ```shell
         go build -o buildinfo/tmp main.go
-        GOOS=darwin GOARCH=amd64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp commitBranch) -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp gitVersion) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=darwin/amd64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-darwin-amd64 .
+        GOOS=darwin GOARCH=amd64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp commitBranch) -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=darwin/amd64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-darwin-amd64 .
         ```
     - arm64
         ```shell
         go build -o buildinfo/tmp main.go
-        GOOS=darwin GOARCH=arm64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp commitBranch) -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp gitVersion) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=darwin/arm64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-darwin-arm64 .
+        GOOS=darwin GOARCH=arm64 go build -v -ldflags "-s -w -buildid= -X main.BuildDate=$(buildinfo/tmp now) -X main.Compiler= -X main.GitCommitBranch=$(buildinfo/tmp commitBranch) -X main.GitCommitSha=$(buildinfo/tmp commitSha) -X main.GitCommitShortSha=$(buildinfo/tmp commitShortSha) -X main.GitCommitTag=$(buildinfo/tmp commitTag) -X main.GitCommitTimestamp=$(buildinfo/tmp commitTimestamp) -X main.GitTreeState=$(buildinfo/tmp git-tree-state) -X main.GitVersion=$(buildinfo/tmp commitTag) -X main.GoVersion=$(buildinfo/tmp goShortVersion) -X main.Major= -X main.Minor= -X main.Revision= -X main.Platform=darwin/arm64 -X main.CiPipelineId= -X main.CiJobId=" -trimpath -o git-go-darwin-arm64 .
         ```
