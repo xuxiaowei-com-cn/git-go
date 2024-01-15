@@ -36,3 +36,4 @@ build/
 /*/*.exe
 /*/tmp
 /git-go*
+/buildinfo/buildinfo
